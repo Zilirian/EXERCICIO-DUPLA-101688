@@ -4,7 +4,7 @@
     margin: 0;
     box-sizing: border-box;
 }
-
+ 
 /* ─── Custom Properties ────────────────────────────────────── */
 :root {
     --ember:        #c8602a;
@@ -16,17 +16,17 @@
     --bone:         #e8e0d4;
     --void:         #080604;
     --smoke:        rgba(8, 6, 4, 0.72);
-
+ 
     --font-display: "symphony", "Palatino Linotype", "Book Antiqua", Palatino, serif;
     --font-body:    "Cormorant Garamond", "IM Fell English", Georgia, serif;
-
+ 
     --transition-soft: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --transition-ember: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
+ 
 /* ─── Google Fonts (fallback se "symphony" não carregar) ───── */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&display=swap');
-
+ 
 /* ─── Body & Background ────────────────────────────────────── */
 body {
     background-image: url(assets/fire_keeper.png);
@@ -35,17 +35,17 @@ body {
     background-size: cover;
     background-attachment: fixed;
     background-color: var(--void);
-
+ 
     color: var(--bone);
     font-family: var(--font-body);
     font-size: 1rem;
     line-height: 1.7;
     min-height: 100vh;
-
+ 
     /* Overlay escuro sobre a imagem para garantir legibilidade */
     position: relative;
 }
-
+ 
 body::before {
     content: "";
     position: fixed;
@@ -56,13 +56,13 @@ body::before {
     pointer-events: none;
     z-index: 0;
 }
-
+ 
 /* Garante que o conteúdo fique acima do overlay */
 body > * {
     position: relative;
     z-index: 1;
 }
-
+ 
 /* ─── Typography ────────────────────────────────────────────── */
 h1, h2, h3 {
     font-family: var(--font-display);
@@ -74,12 +74,13 @@ h1, h2, h3 {
         0 0 30px rgba(200, 96, 42, 0.6),
         0 0 60px rgba(200, 96, 42, 0.2);
     line-height: 1.2;
+    text-align: center;
 }
-
+ 
 h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
 h2 { font-size: clamp(1.4rem, 3vw, 2.2rem); }
 h3 { font-size: clamp(1.1rem, 2vw, 1.6rem); }
-
+ 
 p {
     text-align: center;
     color: var(--ash);
@@ -90,13 +91,13 @@ p {
     max-width: 65ch;
     margin-inline: auto;
 }
-
+ 
 p em, p i {
     font-style: italic;
     color: var(--gold-light);
     opacity: 0.9;
 }
-
+ 
 /* ─── Links ─────────────────────────────────────────────────── */
 a {
     color: var(--ash);
@@ -110,7 +111,7 @@ a {
     transition: color var(--transition-soft), text-shadow var(--transition-soft);
     position: relative;
 }
-
+ 
 a::after {
     content: "";
     display: block;
@@ -120,19 +121,20 @@ a::after {
     margin: 3px auto 0;
     transition: width var(--transition-ember);
 }
-
+ 
 a:hover {
     color: var(--gold-light);
     text-shadow: 0 0 20px rgba(200, 96, 42, 0.7);
 }
-
+ 
 a:hover::after {
     width: 80%;
 }
-
+ 
 /* ─── Buttons ───────────────────────────────────────────────── */
 button {
-    display: inline-block;
+    display: block;           /* ← alterado de inline-block para block */
+    margin-inline: auto;      /* ← centraliza horizontalmente         */
     padding: 12px 36px;
     border-radius: 2px;
     cursor: pointer;
@@ -149,13 +151,13 @@ button {
         color var(--transition-soft),
         border-color var(--transition-soft),
         box-shadow var(--transition-soft);
-
+ 
     /* brilho sutil de canto */
     box-shadow:
         inset 0 0 0 0 rgba(200, 96, 42, 0),
         0 0 12px rgba(200, 96, 42, 0.15);
 }
-
+ 
 /* Camada de preenchimento ao hover */
 button::before {
     content: "";
@@ -167,7 +169,7 @@ button::before {
     opacity: 0;
     transition: opacity var(--transition-soft);
 }
-
+ 
 button:hover {
     color: var(--bone);
     border-color: var(--ember-glow);
@@ -175,29 +177,29 @@ button:hover {
         0 0 22px rgba(200, 96, 42, 0.35),
         0 0  6px rgba(200, 96, 42, 0.15) inset;
 }
-
+ 
 button:hover::before {
     opacity: 1;
 }
-
+ 
 button:active {
     transform: scale(0.97);
     box-shadow: 0 0 8px rgba(200, 96, 42, 0.2);
 }
-
+ 
 /* Variante primária (adicione class="btn-primary") */
 button.btn-primary {
     background: linear-gradient(135deg, rgba(200, 96, 42, 0.3), rgba(184, 146, 42, 0.2));
     border-color: var(--gold);
     color: var(--gold-light);
 }
-
+ 
 button.btn-primary:hover {
     background: linear-gradient(135deg, rgba(200, 96, 42, 0.5), rgba(184, 146, 42, 0.35));
     box-shadow: 0 0 28px rgba(184, 146, 42, 0.4);
     color: var(--bone);
 }
-
+ 
 /* ─── Separador ornamental ──────────────────────────────────── */
 .divider {
     display: flex;
@@ -206,7 +208,7 @@ button.btn-primary:hover {
     margin: 2rem auto;
     max-width: 320px;
 }
-
+ 
 .divider::before,
 .divider::after {
     content: "";
@@ -215,34 +217,34 @@ button.btn-primary:hover {
     background: linear-gradient(90deg, transparent, var(--ember), transparent);
     opacity: 0.5;
 }
-
+ 
 .divider-icon {
     color: var(--ember);
     font-size: 0.75rem;
     opacity: 0.8;
 }
-
+ 
 /* ─── Scrollbar ─────────────────────────────────────────────── */
 ::-webkit-scrollbar {
     width: 5px;
 }
-
+ 
 ::-webkit-scrollbar-track {
     background: var(--void);
 }
-
+ 
 ::-webkit-scrollbar-thumb {
     background: var(--ember);
     border-radius: 2px;
     opacity: 0.7;
 }
-
+ 
 /* ─── Seleção de texto ──────────────────────────────────────── */
 ::selection {
     background: rgba(200, 96, 42, 0.35);
     color: var(--bone);
 }
-
+ 
 /* ─── Animação de entrada suave ─────────────────────────────── */
 @keyframes fadeAscend {
     from {
@@ -254,23 +256,23 @@ button.btn-primary:hover {
         transform: translateY(0);
     }
 }
-
+ 
 /* Aplique .reveal a qualquer elemento para a animação */
 .reveal {
     animation: fadeAscend 0.9s var(--transition-ember) both;
 }
-
+ 
 .reveal:nth-child(2) { animation-delay: 0.15s; }
 .reveal:nth-child(3) { animation-delay: 0.30s; }
 .reveal:nth-child(4) { animation-delay: 0.45s; }
-
+ 
 /* ─── Responsividade básica ─────────────────────────────────── */
 @media (max-width: 600px) {
     button {
         padding: 10px 24px;
         font-size: 0.78rem;
     }
-
+ 
     body::before {
         background:
             radial-gradient(ellipse at 50% 90%, rgba(200, 96, 42, 0.1) 0%, transparent 60%),
